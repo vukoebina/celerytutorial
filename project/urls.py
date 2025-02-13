@@ -19,7 +19,7 @@ from django.urls import path
 
 from django.contrib import admin
 from django.urls import path
-from mainapp.views import index
+from mainapp.views import index, dummy_and_slow_view
 
 urlpatterns = [
     path('', index),
