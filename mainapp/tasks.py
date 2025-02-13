@@ -1,6 +1,8 @@
 from celery import shared_task
+from .models import Report
 import logging
 import time
+
 logger = logging.getLogger(__name__)
 
 
@@ -8,3 +10,8 @@ logger = logging.getLogger(__name__)
 def dummy_and_slow():
     time.sleep(2)
     logger.debug("Dummy and slow task has finished")
+
+@shared_task(name="mainapp_generate_report")
+def generate_report(report_id):
+    report = Report.objects.get(id=report_id)
+    report.generate()
